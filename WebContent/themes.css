@@ -1,0 +1,94 @@
+.default .show_data table, .default .show_data th, .default .show_data td {
+  border-color: #6f6261;
+}
+.default .heading {
+  color: red;
+}
+.default .background-wrapper {
+  background: white;
+  color: black;
+}
+[data-theme=default] {
+  background: #8a7a79;
+  color: black;
+}
+[data-theme=default]:hover {
+  background: #6f6261;
+}
+
+body.default {
+  background: white;
+  color: black;
+}
+
+.light .show_data table, .light .show_data th, .light .show_data td {
+  border-color: #f8b147;
+}
+.light .heading {
+  color: #b56e05;
+}
+.light .background-wrapper {
+  background: #f0ce9c;
+  color: black;
+}
+
+[data-theme=light] {
+  background: #fac678;
+  color: black;
+}
+[data-theme=light]:hover {
+  background: #f8b147;
+}
+
+body.light {
+  background: #f0ce9c;
+  color: black;
+}
+
+.dark .show_data table, .dark .show_data th, .dark .show_data td {
+  border-color: #231f1a;
+}
+.dark .heading {
+  color: red;
+}
+.dark .background-wrapper {
+  background: black;
+  color: white;
+}
+
+[data-theme=dark] {
+  background: #403930;
+  color: white;
+}
+[data-theme=dark]:hover {
+  background: #231f1a;
+}
+
+body.dark {
+  background: black;
+  color: white;
+}
+
+.show_data table, .show_data th, .show_data td {
+  border-style: solid;
+  border-width: thin;
+}
+
+.show_data th {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.controls > button {
+  border: none;
+  padding: 0.5em;
+  border-radius: 0.15em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+body {
+  padding: 1em;
+}
+
+/*# sourceMappingURL=themes.css.map */

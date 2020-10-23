@@ -1,0 +1,58 @@
+@mixin theme($name, $container-bg, $text-color, $h-color, $color) {
+  .#{$name} {
+    .show_data table, .show_data th, .show_data td {
+      border-color: darken($color, 10%);
+    }
+    
+    .heading {
+      color: $h-color;
+    }    
+	
+	.background-wrapper {
+		background: $container-bg;
+		color: $text-color;
+		
+	}
+	}
+	
+	[data-theme='#{$name}'] {
+		background: $color;
+		color: $text-color;
+    
+		&:hover {
+		  background: darken($color, 10%);
+		}
+	}
+
+	body.#{$name} {
+		background: $container-bg;
+		color: $text-color;
+	}
+  }
+
+@include theme(default, white, black, red, #8a7a79);
+@include theme(light, #f0ce9c, black, #b56e05, #fac678);
+@include theme(dark, black, white, red, #403930);
+
+// Default styles
+.show_data table, .show_data th, .show_data td {
+	border-style: solid;
+	border-width: thin;
+}
+
+.show_data th {
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.controls > button {
+  border: none;
+  padding: .5em;
+  border-radius: .15em;
+  font-weight: bold;
+  margin-bottom: .5em;
+}
+
+body {
+  padding: 1em;
+}
