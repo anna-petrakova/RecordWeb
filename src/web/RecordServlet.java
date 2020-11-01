@@ -58,26 +58,7 @@ public class RecordServlet extends HttpServlet {
             String email = request.getParameter("email");
             String bornStr = request.getParameter("birthday");            
             String gender = request.getParameter("gender");
-            String[] interests = request.getParameterValues("interest");
-            String[] interestsFinal;
-            boolean otherInterestSelected = (request.getParameter("interestOther") == null) ? false : true;
-            if (otherInterestSelected) {
-            	
-            	String otherInterestsStr = request.getParameter("interestOtherVal");
-            	String[] otherInterests = otherInterestsStr.split(",");
-            	interestsFinal = new String[interests.length + otherInterests.length];
-            	
-            	for (int i = 0; i < interests.length; i++) {
-            		interestsFinal[i] = interests[i];
-            	}
-            	int idx = interests.length;
-            	for (String str : otherInterests) {
-            		interestsFinal[idx] = str;
-            		idx++;
-            	}
-            } else {
-            	interestsFinal = interests;
-            }
+            String[] interests = processInterests(request);
             String education = request.getParameter("education");
             
             //form data processing
@@ -86,7 +67,7 @@ public class RecordServlet extends HttpServlet {
             record.setEmail(email);
             record.setDateStr(bornStr);
             record.setGender(gender);
-            record.setInterests(interestsFinal);
+            record.setInterests(interests);
             record.setEducation(education);
             
             try {
@@ -106,6 +87,32 @@ public class RecordServlet extends HttpServlet {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "Unknown action " + action);
         }
         
+	}
+	
+	private String[] processInterests(HttpServletRequest request) {
+		String[] interests = request.getParameterValues("interest");
+        if (interests == null) interests = new String[0];
+        String[] interestsFinal;
+        boolean otherInterestSelected = (request.getParameter("interestOther") == null) ? false : true;
+        
+        if (otherInterestSelected) {        	
+        	String otherInterestsStr = request.getParameter("interestOtherVal");
+        	String[] otherInterests = otherInterestsStr.split(",");
+        	interestsFinal = new String[interests.length + otherInterests.length];
+        	
+        	for (int i = 0; i < interests.length; i++) {
+        		interestsFinal[i] = interests[i];
+        	}
+        	int idx = interests.length;
+        	for (String str : otherInterests) {
+        		interestsFinal[idx] = str;
+        		idx++;
+        	}
+        } else {
+        	interestsFinal = interests;
+        }
+        
+        return interestsFinal;
 	}
 
 }

@@ -35,14 +35,12 @@ public class RecordManager {
         	throw new ValidationException("jmnéno neexistuje");
         }
         String[] nameAndSurname = record.getNameSurnameStr().split(" ");
-        if (nameAndSurname.length < 2) {
-        	throw new ValidationException("Jméno a Pøijmení musí být alespoò dvì slova");
+        if (nameAndSurname.length != 2) {
+        	throw new ValidationException("Jméno a Pøijmení musí být dvì slova");
         }
-        String surname = nameAndSurname[nameAndSurname.length-1];
+        String surname = nameAndSurname[1];
         String name = nameAndSurname[0];
-        for (int i = 1; i < nameAndSurname.length-1; i++) {
-    		name += " " + nameAndSurname[i];
-    	}
+        
         record.setName(name);
         record.setSurname(surname);
         
@@ -57,15 +55,6 @@ public class RecordManager {
         	throw new ValidationException("Špatný formát datumu narození");
         }
         record.setDate(born);
-        
-        if (!isValidAddress(record.getEmail())) {
-            throw new ValidationException("Špatný formát emailové adresy");
-        }
-
-    }
-
-    private boolean isValidAddress(String address) {
-        return address.matches("[a-zA-Z0-9\\.]+@[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9]+");
     }
 
 }

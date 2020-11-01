@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.time.LocalDate" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -70,22 +71,23 @@ session.setMaxInactiveInterval(1);
     <table>
         <tr>
             <th>Jméno a Příjmení:</th>
-            <td><input type="text" name="name"/></td>
+            <td><input type="text" name="name" required pattern="([^\u0000-\u007F]|\w)+ ([^\u0000-\u007F]|\w)+"/></td>
         </tr>
         <tr>
         	<th>Email:</th>
-            <td><input type="text" name="email"/></td>
+            <td><input type="email" name="email" required/></td>
         </tr>
         <tr>
             <th>Datum narození:</th>
-            <td><input type="date" name="birthday"/></td>
+            <%!String currDate = LocalDate.now().toString(); %>
+            <td><input type="date" name="birthday" required max=<%=currDate%>></td>
         </tr>
         <tr>
             <th>Pohlaví:</th>
             <td>
-            <input type="radio" id="male" name="gender" value="male" checked="checked">
+            <input type="radio" id="male" name="gender" value="male" required>
 			<label for="male">Male</label>
-			<input type="radio" id="female" name="gender" value="female">
+			<input type="radio" id="female" name="gender" value="female" required>
 			<label for="female">Female</label>
             </td>
         </tr>
